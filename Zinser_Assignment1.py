@@ -1,3 +1,5 @@
+#Mitch Zinser
+#Assignment 1 for CSCI 3203 - Intro to Artificial Intelligence
 import queue
 '''Problem 1'''
 #Create custom queue class (FIFO)
@@ -16,7 +18,7 @@ class custom_queue:
 '''Problem 2'''
 #Create custom stack using a list (LIFO)
 class custom_stack:
-	#initialize the object with an empty stack
+	#Initialize the object with an empty stack
 	def __init__(self):
 		self.stack = []
 	#Push an integer onto the stack, if not an int, make input an int
@@ -35,6 +37,32 @@ class custom_stack:
 		return len(self.stack)
 
 '''Problem 3'''
+#Create custom binary tree where each node is a class
+#Right children will always be greater
+#Left children will be less than or equal to parent
+class custom_tree:
+	#Initialize the node with 4 properties
+	#Take in the value of the node to be created
+	def __init__(self, value):
+		#Integer key is the value of the node
+		self.key = value
+		#Left child node
+		self.left = None
+		#Right child node
+		self.right = None
+		#Parent node
+		self.parent = None
+	#Funciton to set key value
+	def set_key(self, value):
+		self.key = value
+	#Function to get children and parent nodes
+	def get_left_child(self):
+		return self.left
+	def get_right_child(self):
+		return self.right
+	def get_parent(self):
+		return self.parent
+
 '''Problem 4'''
 '''Problem 5'''
 
@@ -69,6 +97,7 @@ def test_stack():
 	print("----Try pop 20 from stack----")
 	for i in range(20):
 		print(test_s.pop())
+#If this file is being run a the main file
 if __name__ == "__main__":
 	test_queue()
 	test_stack()
