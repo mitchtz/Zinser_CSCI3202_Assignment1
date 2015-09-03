@@ -116,10 +116,57 @@ class custom_tree():
 		#Otherwise the parent node has both children
 		else:
 			print("Parent has two children, node not added")
-	#Function to delte a node, takes in value of node to delete
-
+	#Function to delete a node, takes in value of node to delete
+	#Only delete if node has no children
 	def delete(self, value):
-		pass
+		#Look for node in the tree
+		#Store all nodes in a row
+		row = [self.root]
+		cur_node = None
+		done = False
+		#Check if root is desired ParentValue
+		if self.root.get_key() == value:
+			cur_node = self.root
+			done = True
+		#Otherwise run the breadth first search
+		while not done:
+			#Build list of children of previously searched row
+			children = []
+			for i in row:
+				#Get left child if it exists
+				if i.get_left_child() != None:
+					children.append(i.get_left_child())
+				#Get right child if it exists
+				if i.get_right_child() != None:
+					children.append(i.get_right_child())
+			#Set children as current row to search
+			row = children
+			#Look through row for desired parentNode key value
+			for i in row:
+				#If the key is correct, set cur_node as node and mark done
+				if i.get_key() == value:
+					cur_node = i
+					done = True
+			#Check if the row is empty, which means tree was exhausted with no solution
+			if len(row) == 0:
+				cur_node = None
+				done = True
+		#Now cur_node should have the desired node with value
+		#Check if node was found
+		if cur_node == None:
+			print("Node not found")
+		#Then check if node has no children, if so, delete node by removing from child list of parent
+		elif (cur_node.get_left_child() == None) and (cur_node.get_right_child() == None):
+			#Remove node from parent, check if node is left child, if so, reset parent left child to None
+			if cur_node.get_parent().get_left_child() == cur_node:
+				cur_node.get_parent().set_left_child(None)
+			#Otherwise node is right child of parent:
+			else:
+				cur_node.get_parent().set_right_child(None)
+		#Else the node has children
+		else:
+			print("Node not deleted, has children")
+
 	#Function to print the tree, print in format of parent value:left child value, right child value
 	def print_tree(self, node = None):
 		#Reassign node as root if none passed in
@@ -236,12 +283,12 @@ def test_tree():
 	test_t.add(8,6)
 	test_t.add(10,6)
 	test_t.add(20,80)
-	'''Testing for delete
+	print("----Print tree----")
+	test_t.print_tree()
 	print("----Remove 2,5, and 9----")
 	test_t.delete(2)
-	test_t.delete(5)
-	test_t.delete(9)
-	'''
+	test_t.delete(12)
+	test_t.delete(8)
 	print("----Print tree----")
 	test_t.print_tree()
 
