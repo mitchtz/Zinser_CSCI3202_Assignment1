@@ -1,5 +1,6 @@
 #Mitch Zinser
 #Assignment 1 for CSCI 3203 - Intro to Artificial Intelligence
+import random
 import queue
 '''Problem 1'''
 #Create custom queue class (FIFO)
@@ -279,16 +280,22 @@ def test_tree():
 	test_t.add(2,5)
 	test_t.add(1,2)
 	test_t.add(6,5)
-	test_t.add(4,5)
+	test_t.add(4,5) #Should print parent full
 	test_t.add(8,6)
 	test_t.add(10,6)
-	test_t.add(20,80)
+	test_t.add(15,2)
+	test_t.add(4,1)
+	test_t.add(16,1)
+	test_t.add(50,10)
+	test_t.add(60, 50)
+	test_t.add(20,80) #Should print not found
 	print("----Print tree----")
 	test_t.print_tree()
 	print("----Remove 2,5, and 9----")
-	test_t.delete(2)
-	test_t.delete(12)
-	test_t.delete(8)
+	test_t.delete(2) #Should say has children
+	test_t.delete(12) #Should say not found
+	test_t.delete(8) #Should delete successfully
+	test_t.delete(60)
 	print("----Print tree----")
 	test_t.print_tree()
 
@@ -300,12 +307,11 @@ def test_graph():
 	for i in range(10):
 		print(i)
 		test_g.addVertex(i)
-	print("----Adding edges----")
-	for i in range(1,6):
-		print("Edge for:", i, i*2)
-		test_g.addEdge(i, (i*2))
-		print("Edge for:", i, i*3)
-		test_g.addEdge(i, (i*3))
+	print("----Adding edge not in graph----")
+	test_g.addEdge(10,5)
+	print("----Adding random edges----")
+	for i in range(25):
+		test_g.addEdge(random.randint(0,9),random.randint(0,9))
 	print("----Finding vertices----")
 	for i in range(10):
 		print(i)
@@ -315,4 +321,4 @@ if __name__ == "__main__":
 	test_queue()
 	test_stack()
 	test_tree()
-	#test_graph()
+	test_graph()
