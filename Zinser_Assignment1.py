@@ -1,5 +1,6 @@
 #Mitch Zinser
 #Assignment 1 for CSCI 3203 - Intro to Artificial Intelligence
+#Github: https://github.com/mitchtz/Zinser_CSCI3202_Assignment1
 import random
 import queue
 '''Problem 1'''
